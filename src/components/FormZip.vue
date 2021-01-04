@@ -6,27 +6,27 @@
         <label>郵便番号</label>
         <Field v-model="zip" name="zip" as="input" placeholder="921-8052" />
         <button @click="searchAddress" class="zip-button">郵便番号検索</button>
-        <span>{{ errors.name }}</span>
+        <span>{{ errors.zip }}</span>
       </div>
       <div>
         <label>都道府県</label>
         <Field v-model="pref" name="pref" as="input" placeholder="石川県" />
-        <span>{{ errors.name }}</span>
+        <span>{{ errors.pref }}</span>
       </div>
       <div>
         <label>住所1</label>
         <Field v-model="addr_level2" name="addr_level2" as="input" placeholder="金沢市" />
-        <span>{{ errors.name }}</span>
+        <span>{{ errors.addr_level2 }}</span>
       </div>
       <div>
         <label>住所2</label>
         <Field v-model="addr_level3" name="addr_level3" as="input" placeholder="鉾" />
-        <span>{{ errors.name }}</span>
+        <span>{{ errors.addr_level3 }}</span>
       </div>
       <div>
         <label>以下の住所</label>
         <Field v-model="home_address" name="home_address" as="input" placeholder="2-154" />
-        <span>{{ errors.name }}</span>
+        <span>{{ errors.home_address }}</span>
       </div>
     </Form>
   </div>
