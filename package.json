@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@vee-validate/rules": "^4.0.4",
+    "axios": "^0.21.1",
+    "axios-jsonp": "^1.0.4",
     "core-js": "^3.6.5",
-    "ky": "^0.25.1",
-    "ky-universal": "^0.8.2",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "vee-validate": "^4.1.1",
