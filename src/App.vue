@@ -1,10 +1,15 @@
 <template>
-  <h1>Hello Vue3</h1>
+  <router-link to="/form_01">フォーム画面へ</router-link>
+  <router-view></router-view>
 </template>
 
 <script>
 
 export default {
+  data() {
+    return {
+    }
+  }
 }
 </script>
 
