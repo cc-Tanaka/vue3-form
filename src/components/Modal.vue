@@ -1,10 +1,9 @@
 <template>
   <div>
-    <button @click="openModal">open</button>
-    <div class="overlay" v-show="showModal" @click="closeModal">
+    <div class="overlay" @click="$emit('close')">
       <div class="modal">
         <p>Hello Modal</p>
-        <button @click="closeModal">close</button>
+        <button @click="$emit('close')">close</button>
       </div>
     </div>
   </div>
@@ -12,22 +11,10 @@
 
 <script>
 export default {
-  name: "Modal",
-  data: function() {
-    return {
-      showModal: false
-    };
-  },
-  methods: {
-    openModal() {
-      this.showModal = true
-    },
-    closeModal() {
-      this.showModal = false
-    }
-  }
-};
+  name: "Modal"
+}
 </script>
+
 <style>
 .overlay {
   z-index: 1;
