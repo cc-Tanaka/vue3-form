@@ -4,17 +4,17 @@
     <Form :validation-schema="schema" v-slot="{ handleSubmit, errors }" class="form">
       <div>
         <label>名前</label>
-        <Field v-model="name" name="name" as="input" placeholder="田中 太郎" />
+        <Field label="名前" v-model="name" name="name" as="input" placeholder="田中 太郎" rules="required"/>
         <span>{{ errors.name }}</span>
       </div>
       <div>
         <label>電話番号</label>
-        <Field v-model="tel" name="tel" as="input" placeholder="080-1234-5678" />
+        <Field label="電話番号" v-model="tel" name="tel" as="input" placeholder="080-1234-5678" rules="required|numeric"/>
         <span>{{ errors.tel }}</span>
       </div>
       <div>
         <label>メールアドレス</label>
-        <Field v-model="email" name="email" as="input" placeholder="example@gmail.com" />
+        <Field label="メールアドレス" v-model="email" name="email" as="input" placeholder="example@gmail.com" rules="required|email"/>
         <span>{{ errors.email }}</span>
       </div>
       <div>
@@ -34,26 +34,28 @@
 </template>
 
 <script>
-import { Field, Form } from 'vee-validate'
-import * as yup from 'yup'
-import { setLocale } from "yup"
+import { Field, Form, defineRule, configure } from 'vee-validate'
+import { required, email, numeric } from '@vee-validate/rules';
+import { setLocale, localize } from '@vee-validate/i18n';
+import ja from '@vee-validate/i18n/dist/locale/ja.json';
 
-const dict = {
-  mixed: {
-    required: ({ label }) => (label ? label + "は" : "") + "必須です",
-  }
-}
 
-setLocale(dict)
+defineRule('required', required);
+defineRule('email', email);
+defineRule('numeric', numeric);
+
+configure({
+  generateMessage: localize({
+    ja
+  }),
+});
+
+setLocale('ja');
+
 
 export default {
   data() {
     return {
-      schema: yup.object().shape({
-        name: yup.string().required().label("名前"),
-        tel: yup.number().integer().label("電話番号"),
-        email: yup.string().required().email().label("メールアドレス"),
-      }),
       name: "",
       tel: "",
       email: "",
