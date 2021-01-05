@@ -39,9 +39,9 @@ import * as yup from 'yup'
 import { setLocale } from "yup"
 
 const dict = {
-  string: {
-    email: 'メールアドレスを正しい形式で入力してください',
-  },
+  mixed: {
+    required: ({ label }) => (label ? label + "は" : "") + "必須です",
+  }
 }
 
 setLocale(dict)
@@ -50,9 +50,9 @@ export default {
   data() {
     return {
       schema: yup.object().shape({
-        name: yup.string().required(),
-        tel: yup.number().required(),
-        email: yup.string().required().email(),
+        name: yup.string().required().label("名前"),
+        tel: yup.number().integer().label("電話番号"),
+        email: yup.string().required().email().label("メールアドレス"),
       }),
       name: "",
       tel: "",
