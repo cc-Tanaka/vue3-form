@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h4>Step1</h4>
     <Form :validation-schema="schema" v-slot="{ errors }" class="form">
       <div>
         <label>名前</label>

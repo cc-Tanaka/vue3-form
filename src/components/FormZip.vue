@@ -1,5 +1,5 @@
 <template>
-  <h4>住所入力</h4>
+  <h4>Step2</h4>
   <div>
     <Form :validation-schema="schema" v-slot="{ errors }" class="form">
       <div>
@@ -29,8 +29,8 @@
         <span>{{ errors.home_address }}</span>
       </div>
     </Form>
+    <router-link to="/form_end">送信</router-link>
   </div>
-  <router-link to="/form_end">送信</router-link>
 </template>
 
 <script>
