@@ -23,10 +23,12 @@
         <label class="radio_label">必要</label>
         <Field v-model="picked" name="picked" type="radio" value="不必要"></Field>
         <label class="radio_label">不必要</label>
+        <span>{{ errors.picked }}</span>
       </div>
       <div>
-        <Field v-model="check" name="check" type="checkbox" value="同意"></Field>
+        <Field v-model="check" name="check" type="checkbox" value="同意" :modelvalue="false"></Field>
         <label class="radio_label">利用規約への同意</label>
+        <span>{{ errors.check }}</span>
       </div>
       <button @click="handleSubmit(next)">次へ</button>
     </Form>
@@ -56,11 +58,25 @@ setLocale('ja');
 export default {
   data() {
     return {
+      schema: {
+        picked: (value) => {
+          if(value) {
+            return true;
+          }
+          return '必須項目です'
+        },
+        check: (value) => {
+          if(value && !undefined) {
+            return true;
+          }
+          return '利用規約へ同意してください'
+        },
+      },
       name: "",
       tel: "",
       email: "",
       picked: "",
-      check: ""
+      check: "",
     }
   },
   components: {
