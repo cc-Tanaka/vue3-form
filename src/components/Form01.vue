@@ -36,6 +36,15 @@
 <script>
 import { Field, Form } from 'vee-validate'
 import * as yup from 'yup'
+import { setLocale } from "yup"
+
+const dict = {
+  string: {
+    email: 'メールアドレスを正しい形式で入力してください',
+  },
+}
+
+setLocale(dict)
 
 export default {
   data() {
