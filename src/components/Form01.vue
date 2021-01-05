@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4>Step1</h4>
-    <Form :validation-schema="schema" v-slot="{ errors }" class="form">
+    <Form :validation-schema="schema" v-slot="{ handleSubmit, errors }" class="form">
       <div>
         <label>名前</label>
         <Field v-model="name" name="name" as="input" placeholder="田中 太郎" />
@@ -28,7 +28,7 @@
         <Field v-model="check" name="check" type="checkbox" value="同意"></Field>
         <label class="radio_label">利用規約への同意</label>
       </div>
-      <router-link to="/form_zip">次へ</router-link>
+      <button @click="handleSubmit(next)">次へ</button>
     </Form>
   </div>
 </template>
@@ -99,6 +99,11 @@ export default {
       localStorage.check = newCheck;
     }
   },
+  methods: {
+    next() {
+      this.$router.push('form_zip')
+    }
+  }
 }
 </script>
 
