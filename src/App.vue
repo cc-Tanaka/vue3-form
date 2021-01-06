@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/form_01">フォーム画面へ</router-link>
+  <router-link class="font-semibold" to="/form_01">フォーム画面へ</router-link>
   <router-view></router-view>
   <button @click="openModal">open</button>
   <Modal @close="closeModal" v-show="showModal"></Modal>
