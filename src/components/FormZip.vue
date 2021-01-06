@@ -1,31 +1,31 @@
 <template>
   <h4>Step2</h4>
   <div>
-    <Form :validation-schema="schema" v-slot="{ errors }" class="form">
+    <Form v-slot="{ errors }" class="form">
       <div>
         <label>郵便番号</label>
-        <Field v-model="zip" name="zip" as="input" placeholder="921-8052" />
+        <Field label="郵便番号" v-model="zip" name="zip" as="input" placeholder="921-8052" rules="required"/>
         <button @click="searchAddress" class="zip-button">郵便番号検索</button>
         <span>{{ errors.zip }}</span>
       </div>
       <div>
         <label>都道府県</label>
-        <Field v-model="pref" name="pref" as="input" placeholder="石川県" />
+        <Field label="都道府県" v-model="pref" name="pref" as="input" placeholder="石川県" rules="required"/>
         <span>{{ errors.pref }}</span>
       </div>
       <div>
         <label>住所1</label>
-        <Field v-model="addr_level2" name="addr_level2" as="input" placeholder="金沢市" />
+        <Field label="住所1" v-model="addr_level2" name="addr_level2" as="input" placeholder="金沢市" rules="required"/>
         <span>{{ errors.addr_level2 }}</span>
       </div>
       <div>
         <label>住所2</label>
-        <Field v-model="addr_level3" name="addr_level3" as="input" placeholder="鉾" />
+        <Field label="住所2" v-model="addr_level3" name="addr_level3" as="input" placeholder="鉾" rules="required"/>
         <span>{{ errors.addr_level3 }}</span>
       </div>
       <div>
         <label>以下の住所</label>
-        <Field v-model="home_address" name="home_address" as="input" placeholder="2-154" />
+        <Field label="以下の住所" v-model="home_address" name="home_address" as="input" placeholder="2-154"/>
         <span>{{ errors.home_address }}</span>
       </div>
     </Form>
@@ -34,21 +34,27 @@
 </template>
 
 <script>
-import { Field, Form } from 'vee-validate'
-import * as yup from 'yup'
-
+import { Field, Form, defineRule, configure } from 'vee-validate'
 import Feacher from "../lib/zip.js"
+import { required, email, numeric } from '@vee-validate/rules';
+import { setLocale, localize } from '@vee-validate/i18n';
+import ja from '@vee-validate/i18n/dist/locale/ja.json';
+
+defineRule('required', required);
+defineRule('email', email);
+defineRule('numeric', numeric);
+
+configure({
+  generateMessage: localize({
+    ja
+  }),
+});
+
+setLocale('ja');
 
 export default {
   data() {
     return {
-      schema: yup.object().shape({
-        zip: yup.string().required(),
-        pref: yup.string().required(),
-        addr_level2: yup.string().required(),
-        addr_level3: yup.string().required(),
-        home_address: yup.string().required(),
-      }),
       zip: "",
       pref: "",
       addr_level2: "",
