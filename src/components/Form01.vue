@@ -66,7 +66,7 @@ export default {
           return '必須項目です'
         },
         check: (value) => {
-          if(value && !undefined) {
+          if(typeof value !== "undefined" && value) {
             return true;
           }
           return '利用規約へ同意してください'
